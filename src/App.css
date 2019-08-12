@@ -4,9 +4,8 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 0 30px;
     background-color: #eff3f7;
-    /* height: 100%; */
 }
 
 h1,
@@ -29,11 +28,17 @@ li {
 }
 
 .movie-container {
+    width: 100%;
     padding-top: 70px;
     display: grid;
     grid-template-columns: repeat(2, 480px);
     grid-gap: 50px;
     justify-content: center;
+}
+@media (max-width: 768px) {
+    .movie-container {
+        grid-template-columns: 100%;
+    }
 }
 
 /* Loader */
@@ -49,7 +54,6 @@ li {
     width: 1em;
     height: 1em;
     border-radius: 50%;
-    /* position: relative; */
     text-indent: -9999em;
     -webkit-animation: load 1.3s infinite linear;
     animation: load 1.3s infinite linear;
