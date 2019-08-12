@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Movie from "./Movie";
+import axios from "axios";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+    state = {
+        isLoading: true,
+        movies: []
+    };
+
+    getMovie = async () => {
+        try {
+            const {
+                data: {
+                    data: { movies }
+                }
+            } = await axios.get(
+                "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+            );
+            // console.log(response.data.data.movies);
+            this.setState(curstate => ({ movies, isLoading: false }));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    displayLoader = () => {
+        return (
+            <div className="loader-container">
+                <div className="loader" />
+            </div>
+        );
+    };
+
+    displayMovies = () => {
+        const { movies } = this.state;
+        return (
+            <div className="movie-container">
+                {movies.map(movie => (
+                    <Movie
+                        key={movie.id}
+                        id={movie.id}
+                        title={movie.title}
+                        year={movie.year}
+                        genres={movie.genres}
+                        poster={movie.medium_cover_image}
+                        summary={movie.summary}
+                    />
+                ))}
+            </div>
+        );
+    };
+
+    componentDidMount() {
+        this.getMovie();
+    }
+
+    render() {
+        const { isLoading } = this.state;
+
+        return (
+            <div>{isLoading ? this.displayLoader() : this.displayMovies()}</div>
+        );
+    }
 }
 
 export default App;

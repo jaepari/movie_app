@@ -1,0 +1,39 @@
+.movie {
+    padding: 30px 20px;
+    background-color: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    color: #999;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    grid-gap: 20px;
+}
+.movie__poster {
+    margin-top: -50px;
+}
+.movie__poster img {
+    width: 100%;
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+        0 18px 36px -18px rgba(0, 0, 0, 0.3),
+        0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+.movie__title {
+    font-size: 22px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 5px;
+}
+.movie__year {
+    font-weight: 400;
+}
+.movie__genres {
+    display: flex;
+    margin: 5px 0;
+}
+.movie__genres li {
+    margin-right: 10px;
+}
+.movie__summary {
+    line-height: 1.3;
+}
