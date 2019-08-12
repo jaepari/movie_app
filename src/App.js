@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Movie from "./Movie";
 import axios from "axios";
 import "./App.css";
@@ -60,7 +60,9 @@ export class App extends Component {
         const { isLoading } = this.state;
 
         return (
-            <div>{isLoading ? this.displayLoader() : this.displayMovies()}</div>
+            <Fragment>
+                {isLoading ? this.displayLoader() : this.displayMovies()}
+            </Fragment>
         );
     }
 }
